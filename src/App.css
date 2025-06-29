@@ -1,0 +1,206 @@
+:root {
+  --background-dark: #1a1a1d;
+  --background-medium: #232329;
+  --text-primary: #ffffff;
+  --text-secondary: #adb5bd;
+  --border-color: #343a40;
+  --form-background: #101012;
+
+  --message-received-bg: #3b3b41;
+  --message-received-text: #ffffff;
+
+  --message-sent-bg: #4f46e5;
+  --message-sent-text: #ffffff;
+  
+  --button-primary-bg: #4f46e5;
+  --button-primary-hover-bg: #4338ca;
+}
+
+body {
+  background-color: var(--background-medium);
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  color: var(--text-primary);
+}
+
+.App {
+  text-align: center;
+  max-width: 728px;
+  margin: 0 auto;
+}
+
+.App header {
+  background-color: var(--background-dark);
+  height: 10vh;
+  min-height: 60px;
+  color: white;
+  position: fixed;
+  width: 100%;
+  max-width: 728px;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 99;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.App section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: var(--background-medium);
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 1.5rem;
+}
+
+main {
+  padding: 1rem;
+  height: 80vh;
+  margin-top: 10vh;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+}
+
+main::-webkit-scrollbar { width: 0.25rem; }
+main::-webkit-scrollbar-track { background: #1e1e24; }
+main::-webkit-scrollbar-thumb { background: #6649b8; }
+
+form {
+  height: 10vh;
+  position: fixed;
+  bottom: 0;
+  background-color: var(--form-background);
+  width: 100%;
+  max-width: 728px;
+  display: flex;
+  font-size: 1.2rem;
+  border-top: 1px solid var(--border-color);
+}
+
+form button {
+  width: 70px;
+  background-color: var(--button-primary-bg);
+  transition: background-color 0.2s ease;
+}
+
+form button:hover { background-color: var(--button-primary-hover-bg); }
+
+input {
+  line-height: 1.5;
+  width: 100%;
+  font-size: 1.1rem;
+  background: var(--background-dark);
+  color: white;
+  outline: none;
+  border: none;
+  padding: 0 1rem;
+}
+
+input:focus { border-top: 1px solid var(--button-primary-bg); }
+
+button {
+  background-color: #444;
+  border: none;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 1.1rem;
+  border-radius: 8px;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.sign-in {
+  color: var(--text-primary);
+  background: var(--button-primary-bg);
+  max-width: 400px;
+  margin: 0 auto;
+  transition: background-color 0.2s ease;
+}
+.sign-in:hover { background-color: var(--button-primary-hover-bg); }
+.sign-out { background-color: #c9184a; }
+
+.message-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5rem;
+}
+
+.message {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.sent { flex-direction: row-reverse; }
+.sent .message-wrapper { align-items: flex-end; }
+.received .message-wrapper { align-items: flex-start; }
+
+.message p {
+  max-width: 500px;
+  margin-bottom: 4px;
+  line-height: 1.5;
+  padding: 10px 15px;
+  border-radius: 18px;
+  position: relative;
+  text-align: left;
+}
+
+.sent p {
+  color: var(--message-sent-text);
+  background: var(--message-sent-bg);
+}
+.received p {
+  background: var(--message-received-bg);
+  color: var(--message-received-text);
+}
+
+.message-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.message-meta .timestamp {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.delete-button {
+  background: none;
+  border: none;
+  color: #ff4d6d;
+  cursor: pointer;
+  padding: 0;
+  font-size: 0.9rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.message-wrapper:hover .delete-button { opacity: 1; }
+
+img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 2px 5px;
+}

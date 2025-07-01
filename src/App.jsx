@@ -25,7 +25,7 @@ function App() {
         {user && <SignOutBtn /> }
       </header>
       <section>
-        {user ? <ChatRoom /> : <SignIn />}
+        {user ? <ChatRoom user={user} /> : <SignIn />}
 
       </section>
     </div>

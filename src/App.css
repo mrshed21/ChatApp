@@ -14,6 +14,7 @@
   
   --button-primary-bg: #4f46e5;
   --button-primary-hover-bg: #4338ca;
+  behavior: smooth;
 }
 
 body {

@@ -125,7 +125,9 @@ button {
   font-size: 1.1rem;
   border-radius: 8px;
 }
-
+.delete-msg {
+  cursor: pointer;
+}
 button:disabled {
   opacity: 0.5;
   cursor: not-allowed;

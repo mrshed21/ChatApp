@@ -35,13 +35,14 @@ export default function ChatRoom({ user }) {
   const sendMessage = async (e) => {
     e.preventDefault();
     if (formValue.trim() === "") return;
-    const { uid, photoURL } = user;
+    const { uid, photoURL , displayName} = user;
     try {
       await addDoc(messagesRef, {
         text: formValue,
         createdAt: serverTimestamp(),
         uid,
         photoURL,
+        displayName,
       });
       setFormValue("");
     } catch (error) {

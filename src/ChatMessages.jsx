@@ -1,5 +1,6 @@
-import { auth , firestore} from "./firebase";
-import { deleteDoc, doc } from "firebase/firestore";
+import { auth } from "./firebase";
+
+
 
 function formatTimestamp(timestamp) {
   if (!timestamp) return "";
@@ -12,17 +13,10 @@ function formatTimestamp(timestamp) {
   return formatedData;
 }
 
-const handleDelete = async (id) => {
-  try {
-    await deleteDoc(doc(firestore, "message", id));
-    console.log("تم حذف الرسالة بنجاح" , id);
-  } catch (error) {
-    console.error("خطأ في حذف الرسالة:", error);
-  }
-};
 
 export default function ChatMessages(props) {
   const {id, text, createdAt, uid, photoURL } = props.masseges;
+   const handleDelete = props.handleDelete; 
   const currentUser = auth.currentUser.uid;
   const messageClass = uid === currentUser ? "sent" : "recived";
 

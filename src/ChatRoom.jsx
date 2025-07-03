@@ -1,6 +1,8 @@
 import { firestore } from "./firebase";
 import { useState, useEffect, useRef } from "react";
 import ChatMessages from "./ChatMessages";
+import { deleteDoc, doc } from "firebase/firestore";
+import { toast } from "react-toastify";
 
 import {
   collection,
@@ -49,6 +51,25 @@ export default function ChatRoom({ user }) {
       console.error(error);
     }
   };
+
+  const handleDelete = async (id) => {
+  try {
+    await deleteDoc(doc(firestore, "message", id));
+          toast.success("✅ تم حذف الرسالة بنجاح" ,  {
+        autoClose: 1000,
+        position: "bottom-right",
+      } )
+
+  } catch (err) {
+    console.error(err)
+          toast.error("❌  خطأ في حذف الرسالة" , {
+        autoClose: 1000,
+        position: "bottom-right",
+      })
+
+  }
+};
+
   return (
     <>
       <main>
@@ -56,7 +77,10 @@ export default function ChatRoom({ user }) {
         {error && <span>an error has ben ... {error.message} </span>}
         {sortedMessages &&
           sortedMessages.map((msg) => (
-            <ChatMessages masseges={msg} key={msg.id} />
+            <ChatMessages 
+            handleDelete={handleDelete} 
+            masseges={{...msg , id:msg.id}} 
+            key={msg.id} />
           ))}
 
         <span style={{ marginBottom: "20px" }} ref={scrollMessages}></span>

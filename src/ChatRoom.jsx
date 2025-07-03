@@ -23,15 +23,15 @@ export default function ChatRoom({ user }) {
     id: doc.id,
     ...doc.data(),
   }));
+  const [formValue, setFormValue] = useState("");
   const sortedMessages = messages ? [...messages].reverse() : [];
 
   useEffect(() => {
-    if (scrollMessages.current){
-        scrollMessages.current.scrollIntoView({behavior: "smooth"})
+    if (scrollMessages.current) {
+      scrollMessages.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [sortedMessages]);
 
-  const [formValue, setFormValue] = useState("");
   const sendMessage = async (e) => {
     e.preventDefault();
     if (formValue.trim() === "") return;
@@ -57,8 +57,9 @@ export default function ChatRoom({ user }) {
           sortedMessages.map((msg) => (
             <ChatMessages masseges={msg} key={msg.id} />
           ))}
+
+        <span style={{ marginBottom: "20px" }} ref={scrollMessages}></span>
       </main>
-      <span ref={scrollMessages}></span>
       <form onSubmit={sendMessage}>
         <input
           value={formValue}

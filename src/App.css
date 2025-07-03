@@ -73,6 +73,7 @@ main {
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
+  padding-bottom: 10vh ;
 }
 
 main::-webkit-scrollbar { width: 0.25rem; }

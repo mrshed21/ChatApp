@@ -1,6 +1,5 @@
 import { auth } from "./firebase";
-
-
+import { useState } from "react";
 
 function formatTimestamp(timestamp) {
   if (!timestamp) return "";
@@ -13,16 +12,20 @@ function formatTimestamp(timestamp) {
   return formatedData;
 }
 
-
 export default function ChatMessages(props) {
-  const {id, text, createdAt, uid, photoURL } = props.masseges;
-   const handleDelete = props.handleDelete; 
+  const { id, text, createdAt, uid, photoURL } = props.masseges;
+  const handleDelete = props.handleDelete;
   const currentUser = auth.currentUser.uid;
   const messageClass = uid === currentUser ? "sent" : "recived";
 
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
-    <div className={`message ${messageClass}`}>
-        
+    <div
+      className={`message ${messageClass}`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <img src={photoURL} alt="photo" />
       <div className="message-wrapper">
         <p>{text}</p>
@@ -30,7 +33,7 @@ export default function ChatMessages(props) {
           {createdAt && (
             <span className="timestamp">{formatTimestamp(createdAt)} </span>
           )}
-          {currentUser === uid && (
+          {currentUser === uid && isHovered &&(
             <span
               onClick={() => handleDelete(id)}
               className="delete-msg"
